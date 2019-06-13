@@ -25,7 +25,7 @@ router.get('/receive_token', (req, res) => {
     if (err)
       res.redirect('login');
     res.cookie('jwt', jwt.sign(token, CONFIG.JWTsecret));
-    res.redirect('/auth');
+    res.redirect('/api/v1/subscriptions');
   });
 });
 
