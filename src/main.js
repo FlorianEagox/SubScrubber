@@ -1,10 +1,14 @@
 import express from 'express';
-import ExampleController from './controllers/example_controller';
+import ApiController from './controllers/api_controller';
+import { google } from 'googleapis';
+import cookieParser from 'cookie-parser';
 
 const PORT = 3002;
 
 async function main() {
   const app = express();
+
+  app.use(cookieParser());
 
   app.set('view engine', 'pug');
   app.set('views', './views');
@@ -13,9 +17,9 @@ async function main() {
     res.render('index');
   });
 
-  // app.use('/c', ExampleController);
+  app.use('/api/v1', ApiController);
 
-  app.listen(PORT, _ => {
+  app.listen(PORT, () => {
     console.log(`Listening on port ${PORT}`);
   });
 }

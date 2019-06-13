@@ -5,7 +5,7 @@
   "main": "src/main.js",
   "scripts": {
     "start": "node -r esm src/main.js",
-    "dev": "nodemon -r esm src/main.js"
+    "dev": "nodemon --ignore './public' -r esm src/main.js"
   },
   "author": "Aidan Lovelace, Seth Painter",
   "license": "MIT",
@@ -14,7 +14,11 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
+    "google-auth-library": "^4.2.0",
+    "googleapis": "^40.0.0",
+    "jsonwebtoken": "^8.5.1",
     "pug": "^2.0.3"
   }
 }

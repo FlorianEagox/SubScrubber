@@ -1,2 +1,4 @@
 node_modules
 package-lock.json
+client_secret.json
+config.js
