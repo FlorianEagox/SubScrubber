@@ -9,13 +9,15 @@ html(lang="en")
   body
     .container
       br
-      .jumbotron
-        h1.display-4 Sub Scrubber
-        p.lead
-          | Finally clean out your YouTube subscription box, once and for all!
-        a.btn.btn-primary.btn-lg(href='#', role='button')#login-button Login
+      for sub in subscriptions
+        .card(style='width: 18rem;')
+          img.card-img-top(src=sub.snippet.thumbnails.default.url)
+          .card-body
+            h5.card-title= sub.snippet.title
+            p.card-text= sub.snippet.description
+
 
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
-    script(src="/static/index.js")
+    //- script(src="/static/subscriptions.js")
