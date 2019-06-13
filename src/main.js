@@ -22,7 +22,7 @@ async function main() {
   });
 
   app.get('/subscriptions', AuthMiddleware, async (req, res) => {
-    res.render('subcriptions', {
+    res.render('subscriptions', {
       subscriptions: await Api.getSubscriptions(req.oauth2Client)
     });
   });
