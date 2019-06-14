@@ -1,23 +1,52 @@
 <!DOCTYPE html>
+-function prettyDate(dateString){
+    //if it's already a date object and not a string you don't need this line:
+    -var date = new Date(dateString);
+    -var d = date.getDate();
+    -var monthNames = [ "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" ];
+    -var m = monthNames[date.getMonth()];
+    -var y = date.getFullYear();
+    -return d+' '+m+' '+y;
+-}
 html(lang="en")
   head
     meta(charset="UTF-8")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+    link(rel="stylesheet", href="/static/subscriptions.css")
     title SubScrubber
   body
     .container
       br
-      for sub in subscriptions
-        .card(style='width: 18rem;')
-          img.card-img-top(src=sub.snippet.thumbnails.default.url)
-          .card-body
-            h5.card-title= sub.snippet.title
-            p.card-text= sub.snippet.description
+      h1 Subscriptions
+      p These are your subscriptions. Select them by clicking them or using the buttons below.
+      br
+      center
+        button.btn.btn-primary.ml-1.mr-1#select-all-button(type='button') Select All
+        button.btn.btn-secondary.ml-1.mr-1#deselect-all-button(type='button') Deselect All
+        button.btn.btn-danger.ml-1.mr-1#delete-selected-button(type='button') Delete Selected
+      br
+      - let i = 0
+      while i < subscriptions.length
+        .card-deck.mb-4
+          each sub in subscriptions.slice(i, i + 3)
+            .card.subscription-select(style='max-width: 540px;', data-id=sub.id)
+              .row.no-gutters
+                .col-4
+                  img.card-img-top(src=sub.snippet.thumbnails.high.url)
+                .col-8
+                  .card-body
+                    h5.card-title= sub.snippet.title
+                    p.card-text
+                      | Most recent activity:
+                      br 
+                      = prettyDate(sub.snippet.publishedAt)
+        - i += 3
 
 
-    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js', crossorigin='anonymous')
     script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
     script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
-    //- script(src="/static/subscriptions.js")
+    script(src='https://unpkg.com/sweetalert/dist/sweetalert.min.js')
+    script(src="/static/subscriptions.js")

@@ -18,10 +18,7 @@ export default (req, res, next) => {
     });
   }
 
-  const oauth2Client = new OAuth2(CONFIG.oauth2Credentials.client_id, CONFIG.oauth2Credentials.client_secret, CONFIG.oauth2Credentials.redirect_uris[0]);
-  oauth2Client.credentials = credentials;
-
-  req.oauth2Client = oauth2Client;
+  req.oauth2Client.credentials = credentials;
 
   next();
 };
