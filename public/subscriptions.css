@@ -1,3 +1,39 @@
+.subscription-select {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  background-color: white;
+  -webkit-transition: background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+  transition: background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+  -o-transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+  
+}
+
+.subscription-select * {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
 .subscription-select:hover {
   cursor: pointer;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+  transition: background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+  -o-transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+}
+
+.subscription-select.bg-info {
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+  -webkit-transition: background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+  transition: background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
+  -o-transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out;
+  transition: box-shadow 0.1s ease-in-out, background-color 0.3s ease-in-out, -webkit-box-shadow 0.1s ease-in-out;
 }

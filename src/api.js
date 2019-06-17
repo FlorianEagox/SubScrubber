@@ -9,17 +9,21 @@ class YouTube {
       const service = google.youtube('v3');
       let subscriptions = [];
       let nextPage = null;
-      do {
-        const thisPage = await service.subscriptions.list({
-          auth: oa,
-          mine: true,
-          part: 'snippet,contentDetails',
-          maxResults: 50,
-          pageToken: nextPage
-        });
-        subscriptions.push(...thisPage.data.items);
-        nextPage = thisPage.data.nextPageToken;
-      } while(nextPage != null);
+      try {
+        do {
+          const thisPage = await service.subscriptions.list({
+            auth: oa,
+            mine: true,
+            part: 'snippet,contentDetails',
+            maxResults: 50,
+            pageToken: nextPage
+          });
+          subscriptions.push(...thisPage.data.items);
+          nextPage = thisPage.data.nextPageToken;
+        } while(nextPage != null);
+      } catch (err) {
+        reject(err);
+      }
       
   
       resolve(subscriptions.sort((a, b) => {

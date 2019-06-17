@@ -6,6 +6,7 @@ import ApiController from './controllers/api_controller';
 import AuthMiddleware from './middleware/auth_middleware';
 import OAuthMiddleware from './middleware/oauth_middleware';
 import Api from './api';
+import CONFIG from '../config';
 
 const PORT = 3002;
 
@@ -21,7 +22,7 @@ async function main() {
   app.set('views', './views');
 
   app.get('/', (req, res) => {
-    res.render('index');
+    res.render('index', { siteConfig: CONFIG });
   });
 
   app.get('/auth_callback', async (req, res) => {
@@ -39,14 +40,15 @@ async function main() {
 
   app.get('/subscriptions', AuthMiddleware, async (req, res) => {
     res.render('subscriptions', {
-      subscriptions: await Api.YouTube.getSubscriptions(req.oauth2Client)
+      subscriptions: await Api.YouTube.getSubscriptions(req.oauth2Client),
+      siteConfig: CONFIG
     });
   });
 
   app.use('/api/v1', ApiController);
 
-  app.listen(PORT, () => {
-    console.log(`Listening on port ${PORT}`);
+  app.listen(CONFIG.port, () => {
+    console.log(`Listening on port ${CONFIG.port}`);
   });
 }
 

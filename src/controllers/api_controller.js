@@ -23,12 +23,14 @@ router.get('/subscriptions', AuthMiddleware, async (req, res) => {
 
 router.delete('/subscriptions', AuthMiddleware, async (req, res) => {
   try {
-    const toDelete = req.query.delete.trim().split('+').filter((el) => el != '');
-    const promises = toDelete.map(id => Api.YouTube.deleteSubscription(req.oauth2Client, id));
+    const toDelete = req.query.delete.trim().split(' ').filter((el) => el != '');    
+    const failed = [];
+    const promises = toDelete.map(id => Api.YouTube.deleteSubscription(req.oauth2Client, id).catch(_ => failed.push(id)));
     if (promises.length > 0)
-      await Promise.all(toDelete.map(id => Api.YouTube.deleteSubscription(req.oauth2Client, id)));
+      await Promise.all(toDelete.map(id => Api.YouTube.deleteSubscription(req.oauth2Client, id))).catch(_ => {});
     return res.send({
-      success: true
+      success: true,
+      failed: failed
     });
   } catch(err) {
     return res.status(500).send({

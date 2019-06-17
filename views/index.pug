@@ -1,21 +1,31 @@
-<!DOCTYPE html>
-html(lang="en")
+doctype html
+html(lang='en-US')
   head
-    meta(charset="UTF-8")
-    meta(name="viewport", content="width=device-width, initial-scale=1.0")
-    meta(http-equiv="X-UA-Compatible", content="ie=edge")
-    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
-    title SubScrubber
-  body
-    .container
-      br
-      .jumbotron
-        h1.display-4 Sub Scrubber
-        p.lead
-          | Finally clean out your YouTube subscription box, once and for all!
-        a.btn.btn-primary.btn-lg(href='#', role='button')#login-button Login
+    meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
+    title SubScrubber | Finally clean out your YouTube subscription box, once and for all!
 
+    meta(property='og:title', content='SubScrubber')
+    meta(property='og:locale', content='en_US')
+    meta(name='description', content='Finally clean out your YouTube subscription box, once and for all!')
+    meta(property='og:description', content='Finally clean out your YouTube subscription box, once and for all!')
+    link(rel='canonical', href=siteConfig.baseURL)
+    meta(property='og:url', content=siteConfig.baseURL)
+    meta(property='og:site_name', content='SubScrubber')
+    script(type='application/ld+json').
+      {"@type":"WebSite","url":#{siteConfig.baseURL},"name":"SubScrubber","description":"Finally clean out your YouTube subscription box, once and for all!","headline":"SubScrubber","@context":"http://schema.org"}
+
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+    meta(name='theme-color', content='#157878')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    link(rel='stylesheet', href='/static/style.css')
+  body
+    a#skip-to-content(href=`${siteConfig.baseURL}/#content`) Skip to the content.
+    header.page-header(role='banner')
+      h1.project-name SubScrubber
+      h2.project-tagline Finally clean out your YouTube subscription box, once and for all!
+      a.btn(href='https://github.com/TheFoxarmy/SubScrubber') View on GitHub
+      a.btn(href='#')#login-button Get Started
+    main#content.main-content(role='main')
+      p SubScrubber is a tool made by Aidan Lovelace and Seth Painter to more easily manage your subscriptions. It even allows you to unsubscribe from channels in bulk!
     script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js', integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1', crossorigin='anonymous')
-    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js', integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM', crossorigin='anonymous')
     script(src="/static/index.js")
