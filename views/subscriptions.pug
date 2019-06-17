@@ -17,15 +17,37 @@ html(lang='en-US')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     meta(name='theme-color', content='#157878')
     meta(name='apple-mobile-web-app-status-bar-style', content='black-translucent')
+    link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
     link(rel='stylesheet', href='/static/style.css')
+    link(rel='stylesheet', href='/static/subscriptions.css')
   body
     a#skip-to-content(href=`${siteConfig.baseURL}/#content`) Skip to the content.
     header.page-header(role='banner')
       h1.project-name SubScrubber
       h2.project-tagline Finally clean out your YouTube subscription box, once and for all!
       a.btn(href='https://github.com/TheFoxarmy/SubScrubber') View on GitHub
-      a.btn(href='#')#login-button Get Started
-    main#content.main-content(role='main')
-      p SubScrubber is a tool made by Aidan Lovelace and Seth Painter to more easily manage your subscriptions. It even allows you to unsubscribe from channels in bulk!
-    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo', crossorigin='anonymous')
-    script(src="/static/index.js")
+      a.btn(href='#')#select-all-button Select All
+      a.btn(href='#')#deselect-all-button Deselect All
+      a.btn(href='#')#delete-selected-button Unsubscribe Selected
+    .container
+      br
+      - let i = 0
+      - let j = 0
+      while i < subscriptions.length
+        .card-deck.mb-4
+          each sub in subscriptions.slice(i, i + 3)
+            .card.subscription-select(style='max-width: 540px;', data-id=`${j}`)
+              .row.no-gutters
+                .col-4
+                  img.card-img-top(src=sub.snippet.thumbnails.high.url)
+                .col-8
+                  .card-body
+                    h5.card-title= sub.snippet.title
+            - j++
+        - i += 3
+
+
+    script(src='https://code.jquery.com/jquery-3.3.1.min.js', crossorigin='anonymous')
+    script(src='https://unpkg.com/sweetalert/dist/sweetalert.min.js')
+    script!= `const subscriptions = ${JSON.stringify(subscriptions)};`
+    script(src="/static/subscriptions.js")

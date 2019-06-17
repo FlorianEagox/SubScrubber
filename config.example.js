@@ -7,6 +7,9 @@ export default {
     token_uri: "",
     auth_provider_x509_cert_url: "",
     client_secret: "",
-    redirect_uris: []
+    redirect_uris: [],
+    scopes: [
+      'https://www.googleapis.com/auth/youtube.readonly'
+    ]
   }
 };
